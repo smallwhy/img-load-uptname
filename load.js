@@ -2,7 +2,15 @@ const cheerio = require('cheerio');
 var fs = require('fs');
 var request = require('request');
 
+// 读取输出到目录的所有文件名 - 到下载文件不全或错误时可使用
+let imgNames = []
+const files = fs.readdirSync('./images-2')
+files.forEach(function (item, index) {
+    imgNames.push(item);
+});
+console.log('images-2文件夹下的所有文件的文件名' + imgNames.join(','));
 
+// 输出图片文件
 fs.readFile("./index.html","utf-8",function(err,data){ // 读取文件index.html
     if(err) {
       console.log("index.html loading is failed :"+err);
